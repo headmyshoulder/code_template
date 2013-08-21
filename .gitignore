@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+# Python files
+*.pyc
+
+
+# Kdevelop files
+*.kdev4
