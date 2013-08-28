@@ -31,9 +31,9 @@ templates = {}
 
 
 def register_plugin( plugin_info ):
-    # print plugin_info.name
-    # print plugin_info.description
-    # print plugin_info.plugin_object
+    #print plugin_info.name
+    #print plugin_info.description
+    #print plugin_info.plugin_object
 
     plugin = plugin_info.plugin_object
     plugin.set_name( plugin_info.name )
@@ -69,71 +69,3 @@ def main():
 if __name__ == "__main__" :
 
     main()
-    
-
-
-
-
-
-# def get_template_files( directories ) :
-#     files = []
-#     for dir in directories :
-#         fns = glob.glob( os.path.join( dir , "*.json" ) )
-#         for f in fns :
-#             files.append( f )
-#     return files
-
-
-
-# def add_template_to_argparser( data , subparser ):
-#     parser = subparsers.add_parser(
-#         data[ "name" ] ,
-#         help = data[ "help" ] )
-#     for p in data[ "parameters" ]:
-#         parser.add_argument( p[ "filename" ] ,  nargs = 1 , help = p[ "help" ] )
-#     parser.set_defaults( which = data[ "name" ])
-
-# def get_replacements( template , args ):
-#     rep = default_replacements
-#     if hasattr( args , "filename" ) :
-#         fn = os.path.basename( args.filename[0] )
-#         rep[ "FILENAMECAP" ] = ( os.path.splitext( fn )[0] ).upper()
-#         ext = ( os.path.splitext( fn )[1] ).upper()
-#         rep[ "FILEENDINGCAP" ] = ext[ 1: ]
-#         rep[ "FILENAME" ] = fn
-#     return rep
-
-
-
-# def create_template( template , args ):
-#     reps = get_replacements( template , args )
-#     cont = open( os.path.join( template[ "dirname" ] , template[ "code" ] ) , "r" ).read()
-#     abc = Template( cont )
-#     if hasattr( args , "filename" ):
-#         f = open( args.filename[0] , "w"  );
-#         f.write( abc.substitute( reps ) )
-
-
-
-
-
-
-# files = get_template_files( directories )
-
-# ( parser , subparsers ) = create_arg_parser()
-
-# templates = {}
-
-# for f in files:
-#     data = json.load( open( f , "r" ) )
-#     data[ "dirname" ] = os.path.dirname( f )
-#     add_template_to_argparser( data , subparsers )
-#     templates[ data[ "name" ] ] = data
-
-
-
-# args = parser.parse_args()
-
-# template = templates[ args.which ]
-
-# create_template( template , args )
