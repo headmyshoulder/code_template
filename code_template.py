@@ -1,6 +1,8 @@
-#! /usr/bin/python
+#!/usr/bin/env python
+# PYTHON_ARGCOMPLETE_OK
 
 import argparse
+import argcomplete
 import datetime
 import os
 import glob
@@ -25,7 +27,10 @@ default_replacements = {
 
 
 parser = argparse.ArgumentParser( description = description )
-subparsers = parser.add_subparsers( help="subcommand help" )
+parser.add_argument("--env-var1")
+parser.add_argument("--env-var2")
+
+# subparsers = parser.add_subparsers( help = "subcommand help" )
 templates = {}
 
 
@@ -34,11 +39,11 @@ def register_plugin( plugin_info ):
     #print plugin_info.name
     #print plugin_info.description
     #print plugin_info.plugin_object
+    #print
 
     plugin = plugin_info.plugin_object
     plugin.set_name( plugin_info.name )
     plugin.set_description( plugin_info.description )
-
     plugin.register_in_arg_parser( subparsers )
     templates[ plugin.name ] = plugin
 
@@ -56,13 +61,15 @@ def main():
     manager.collectPlugins()
     plugins = manager.getAllPlugins()
     plugins.sort( plugin_sort )
-    for plugin in plugins:
-        register_plugin( plugin ) 
+    #for plugin in plugins:
+        #register_plugin( plugin ) 
 
     # parse arguments and evaluate the current template
+    # argcomplete.autocomplete( parser )
+    argcomplete.autocomplete( parser )
     args = parser.parse_args()
-    template = templates[ args.which ]
-    template.do_work( args , default_replacements )
+    #template = templates[ args.which ]
+    #template.do_work( args , default_replacements )
 
     
 

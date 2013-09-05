@@ -40,6 +40,7 @@ class APlugin( IPlugin ) :
     def __init__( self ):
         self.name = "APlugin"
         self.description = "Description"
+        print "hehe1"
 
     def set_name( self , name ):
         self.name = name

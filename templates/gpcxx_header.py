@@ -1,11 +1,11 @@
 #! /usr/bin/python
 
 from basic_class_template import basic_class_template
-from helpers import APlugin
+import helpers
 
 
 
-class gpcxx_header( APlugin ):
+class gpcxx_header( helpers.APlugin ):
     
     def __init__( self ) :
         self.template = basic_class_template( "AMBOSS" )
