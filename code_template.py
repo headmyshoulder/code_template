@@ -26,11 +26,11 @@ default_replacements = {
 }
 
 
-parser = argparse.ArgumentParser( description = description )
-parser.add_argument("--env-var1")
-parser.add_argument("--env-var2")
 
-# subparsers = parser.add_subparsers( help = "subcommand help" )
+
+parser = argparse.ArgumentParser( description = description )
+
+subparsers = parser.add_subparsers( help = "subcommand help" )
 templates = {}
 
 
@@ -61,15 +61,14 @@ def main():
     manager.collectPlugins()
     plugins = manager.getAllPlugins()
     plugins.sort( plugin_sort )
-    #for plugin in plugins:
-        #register_plugin( plugin ) 
+    for plugin in plugins:
+        register_plugin( plugin ) 
 
     # parse arguments and evaluate the current template
-    # argcomplete.autocomplete( parser )
     argcomplete.autocomplete( parser )
     args = parser.parse_args()
-    #template = templates[ args.which ]
-    #template.do_work( args , default_replacements )
+    template = templates[ args.which ]
+    template.do_work( args , default_replacements )
 
     
 

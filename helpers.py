@@ -99,7 +99,6 @@ def add_class_replacements( replacements , args , class_template ):
 
 def default_processing( filename , replacements , template ):
     print "* Creating " + filename + " ..."
-    add_filename_replacements( replacements , filename )
     source = Template( template )
     f = open( filename , "w" );
     f.write( source.substitute( replacements ) )
@@ -137,7 +136,7 @@ def full_join( path ):
 
 
 
-def find_boost_path( boost_path ):
+def find_path( boost_path ):
     path = full_split( os.getcwd() )
     r = range( 0 , len( path ) )
     r.reverse()
@@ -170,11 +169,10 @@ def find_gpcxx_path():
     return find_gpcxx_header_path()
     
 
-def create_cap_boost_filename_str( f ):
+def create_cap_filename_str( f ):
     f = f.replace( "/" , "_" )
     f = f.replace( "." , "_" )
     f = f.upper()
-    f = f + "_DEFINED"
     return f
 
 

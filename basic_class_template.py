@@ -5,7 +5,7 @@ import os
 from string import Template
 
 import helpers
-
+import copyright_notes
 
 filename_help = "Output file name(s)"
 namespace_help = "Namespace definitions to be created."
@@ -16,11 +16,11 @@ template = """/*
  * Author: $AUTHOR ($AUTHOREMAIL)
  * Copyright: $AUTHOR
  *
-
+$LICENSE
  */
 
-#ifndef ${LIBNAME}_${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
-#define ${LIBNAME}_${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
+#ifndef ${FILENAMECAP}_INCLUDED
+#define ${FILENAMECAP}_INCLUDED
 
 
 $NAMESPACE_OPENING
@@ -29,15 +29,18 @@ $CLASS_TEMPLATE
 
 $NAMESPACE_CLOSING
 
-#endif // ${LIBNAME}_${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
+#endif // ${FILENAMECAP}_INCLUDED
 """
 
 
 
 class basic_class_template():
     
-    def __init__( self , libname ):
+    def __init__( self , libname , namespace , path , license = copyright_notes.boost_copyright_for_header ):
         self.libname = libname
+        self.license = license
+        self.namespace = namespace 
+        self.path = path
         
     def register_in_arg_parser( self , plugin , subparsers ):
         parser = helpers.create_subparser( plugin , subparsers )
@@ -48,12 +51,22 @@ class basic_class_template():
 
     def do_work( self , plugin , args , replacements ):
         print "Creating " + plugin.name + " template(s) ..."
+        
+        path = helpers.find_path( self.path )
 
-        helpers.add_namespace_replacements( replacements , args , [ "Amboss" ] )
+        helpers.add_namespace_replacements( replacements , args , self.namespace )
         helpers.add_class_replacements( replacements , args , helpers.default_class_template )
         replacements[ "LIBNAME" ] = self.libname.upper()
+        replacements[ "LICENSE" ] = self.license
         
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 filename = helpers.check_filename_ending( filename , "h" )
+                p = path
+                p.append( filename )
+                f = helpers.full_join( p )
+                helpers.add_filename_replacements( replacements , filename )
+                replacements[ "FILENAME" ] = f
+                replacements[ "FILENAMECAP" ] = helpers.create_cap_filename_str( f )
                 helpers.default_processing( filename , replacements , template )
+

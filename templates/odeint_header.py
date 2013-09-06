@@ -5,10 +5,10 @@ import helpers
 
 
 
-class gpcxx_header( helpers.APlugin ):
+class odeint_header( helpers.APlugin ):
     
     def __init__( self ) :
-        self.template = basic_class_template( "gpcxx" , [ "gpcxx" ] , [ "gpcxx" ] )
+        self.template = basic_class_template( "odeint" , [ "boost" , "numeric" , "odeint" ] , [ "boost" , "numeric" , "odeint" ] )
         
     def register_in_arg_parser( self , subparsers ):
         self.template.register_in_arg_parser( self , subparsers )
