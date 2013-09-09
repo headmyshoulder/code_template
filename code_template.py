@@ -66,7 +66,10 @@ templates[ "ZEHeader" ] = basic_header_template(
     "ZEHeader" ,
     "Creates a simple header with header guards for ZE." ,
     "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
-
+templates[ "NumdiffHeader" ] = basic_header_template(
+    "NumdiffHeader" ,
+    "Creates a header for numdiff" ,
+    "Numdiff" , [ "numdiff" ] , [ "numdiff" ] )
 
 
 
@@ -90,6 +93,7 @@ templates[ "SimpleSource" ] = basic_source_template(
 
 
 
+
 templates[ "AmbossMain" ] = basic_main_template(
     "AmbossMain" ,
     "Creates a simple main file for Amboss" )
@@ -102,13 +106,16 @@ templates[ "SimpleMain" ] = basic_main_template(
 
 templates[ "SuperTollGTest" ] = basic_gtest_template(
     "SuperTollGTest" ,
-    "Creates a unit test file (example) for gpcxx." , [ "UnitTest" ] , copyright_notes.no_copyright_for_header )
+    "Creates a unit test file for gpcxx." , [ "UnitTest" ] , copyright_notes.no_copyright_for_header )
 templates[ "GPCXXTest" ] = basic_gtest_template(
     "GPCXXTest" ,
-    "Creates a unit test file (example) for gpcxx." , [ "test" ] )
+    "Creates a unit test file for gpcxx." , [ "test" ] )
 templates[ "AmbossTest" ] = basic_gtest_template(
     "AmbossTest" ,
-    "Creates a unit test file (example) for Amboss." , [ "test" ] )
+    "Creates a unit test file for Amboss." , [ "test" ] )
+templates[ "NumdiffTest" ] = basic_gtest_template(
+    "NumdiffTest" ,
+    "Create a unit test file for Numdiff." , [ "test" ] )
 
 
 templates[ "SimpleCMake" ] = basic_cmake_template(
