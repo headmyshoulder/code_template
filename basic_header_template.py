@@ -9,21 +9,13 @@ filename_help = "Output file name(s)"
 namespace_help = "Namespace definitions to be created."
 class_help = "Class templates to be created" 
 template = """/*
-  [auto_generated]
-  $FILENAME
-
-  [begin_description]
-  tba.
-  [end_description]
-
-  Copyright 2009-2012 Karsten Ahnert
-  Copyright 2009-2012 Mario Mulansky
-
-  Distributed under the Boost Software License, Version 1.0.
-  (See accompanying file LICENSE_1_0.txt or
-  copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
+ * $FILENAME
+ * Date: $DATE
+ * Author: $AUTHOR ($AUTHOREMAIL)
+ * Copyright: $AUTHOR
+ *
+$LICENSE
+ */
 
 #ifndef ${FILENAMECAP}_INCLUDED
 #define ${FILENAMECAP}_INCLUDED
@@ -40,13 +32,15 @@ $NAMESPACE_CLOSING
 
 
 
-class odeint_class_template():
+class basic_header_template():
     
-    def __init__( self ):
-        self.name = "OdeintHeader"
-        self.description = "Creates a header file with header guards and namespace defintions for odeint."
-        self.namespace = [ "boost" , "numeric" , "odeint" ]
-        self.path = [ "boost" , "numeric" , "odeint" ]
+    def __init__( self , name , description , libname , namespace , path , license = copyright_notes.boost_copyright_for_header ):
+        self.name = name
+        self.description = description
+        self.libname = libname
+        self.license = license
+        self.namespace = namespace 
+        self.path = path
         
     def register_in_arg_parser( self , subparsers ):
         parser = helpers.create_subparser( self , subparsers )
@@ -62,6 +56,8 @@ class odeint_class_template():
 
         helpers.add_namespace_replacements( replacements , args , self.namespace )
         helpers.add_class_replacements( replacements , args , helpers.default_class_template )
+        replacements[ "LIBNAME" ] = self.libname.upper()
+        replacements[ "LICENSE" ] = self.license
         
         if hasattr( args , "filename" ) :
             for filename in args.filename:
@@ -73,8 +69,4 @@ class odeint_class_template():
                 replacements[ "FILENAME" ] = f
                 replacements[ "FILENAMECAP" ] = helpers.create_cap_filename_str( f )
                 helpers.default_processing( filename , replacements , template )
-
-
-
-
 

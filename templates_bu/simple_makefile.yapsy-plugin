@@ -1,9 +1,0 @@
-[Core]
-Name = SimpleMakefile
-Module = simple_makefile
-
-[Documentation]
-Author = Karsten Ahnert
-Version = 0.1
-Website = http://karstenahnert.com
-Description = Creates a simple makefile.

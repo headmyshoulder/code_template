@@ -8,16 +8,19 @@ import os
 import glob
 import collections
 
-from basic_class_template import *
+from basic_header_template import *
 from basic_source_template import *
 from basic_main_template import *
 from basic_gtest_template import *
-from odeint_class_template import *
+from basic_cmake_template import *
+from basic_jamfile_template import *
+from basic_makefile_template import *
+from odeint_header_template import *
 from odeint_main_template import *
 from odeint_test_template import *
 from supertoll_test_template import *
-
-
+from simple_cpp_project_template import *
+from cpp_project_template import *
 
 description = "Create source code templates for commonly used files."
 
@@ -35,31 +38,31 @@ default_replacements = {
 
 templates = {}
 
-templates[ "AmbossHeader" ] = basic_class_template(
+templates[ "AmbossHeader" ] = basic_header_template(
     "AmbossHeader" , 
     "Creates a simple header with header guards for Amboss." ,
     "Amboss" , [ "Amboss" ] , [ "Amboss" ] ) 
-templates[ "GPCXXHeader" ] = basic_class_template(
+templates[ "GPCXXHeader" ] = basic_header_template(
     "GPCXXHeader" ,
     "Creates a header file with header guards and namespace defintions for gpcxx." ,
     "gpcxx" , [ "gpcxx" ] , [ "gpcxx" ] )
-templates[ "SimpleHeader" ] = basic_class_template(
+templates[ "SimpleHeader" ] = basic_header_template(
     "SimpleHeader" ,
     "Creates a simple header with header guards." ,
     "simple" , [] , [] , copyright_notes.no_copyright_for_header )
-templates[ "SuperTollHeader" ] = basic_class_template(
+templates[ "SuperTollHeader" ] = basic_header_template(
     "SuperTollHeader" ,
     "Creates a simple header with header guards for SuperToll." ,
     "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
-templates[ "AModHeader" ] = basic_class_template(
+templates[ "AModHeader" ] = basic_header_template(
     "AModHeader" ,
     "Creates a simple header with header guards for AMod." ,
     "AMod" , [ "AMod" ] , [ "AMod" ] , copyright_notes.no_copyright_for_header )
-templates[ "ZEHeader" ] = basic_class_template(
+templates[ "ZEHeader" ] = basic_header_template(
     "ZEHeader" ,
     "Creates a simple header with header guards for ZE." ,
     "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
-templates[ "ZEHeader" ] = basic_class_template(
+templates[ "ZEHeader" ] = basic_header_template(
     "ZEHeader" ,
     "Creates a simple header with header guards for ZE." ,
     "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
@@ -79,6 +82,10 @@ templates[ "ZESource" ] = basic_source_template(
     "ZESource" ,
     "Creates a source file for ZE." ,
     [ "ZE" ] , copyright_notes.no_copyright_for_header )
+templates[ "SimpleSource" ] = basic_source_template(
+    "SimpleSource" ,
+    "Creates a simple source file." ,
+    [] , copyright_notes.no_copyright_for_header )
 
 
 
@@ -104,11 +111,25 @@ templates[ "AmbossTest" ] = basic_gtest_template(
     "Creates a unit test file (example) for Amboss." , [ "test" ] )
 
 
-templates[ "OdeintHeader" ] = odeint_class_template()
+templates[ "SimpleCMake" ] = basic_cmake_template(
+    "SimpleCMake" ,
+    "SimpleCMakeLists.txt" )
+templates[ "SimpleJamfile" ] = basic_jamfile_template(
+    "SimpleJamfile" ,
+    "Jamroot" )
+templates[ "SimpleMakefile" ] = basic_makefile_template(
+    "SimpleMakefile" ,
+    "Makefile" )
+
+templates[ "OdeintHeader" ] = odeint_header_template()
 templates[ "OdeintMain" ] = odeint_main_template()
 templates[ "OdeintTest" ] = odeint_test_template()
 
 templates[ "SuperTollTest" ] = supertoll_test_template()
+
+templates[ "SimpleCppProject" ] = simple_cpp_project_template()
+templates[ "CppProject" ] = cpp_project_template()
+
 
 def main():
 
