@@ -1,17 +1,15 @@
 #! /usr/bin/python
 
 import os
-import sys
-from string import Template
 
-import code_template_helpers 
-
+import helpers
+import copyright_notes
 
 
 filename_help = "Output file name(s)"
 template = """/*
  [auto_generated]
- $BOOSTFILENAME
+ $FILENAME
 
  [begin_description]
  tba.
@@ -25,9 +23,9 @@ template = """/*
  copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#include <iostream>
-
 #include <boost/numeric/odeint.hpp>
+
+#include <iostream>
 
 namespace odeint = boost::numeric::odeint;
 
@@ -43,23 +41,27 @@ int main( int argc , char *argv[] )
 
 
 
-class simpleppp( code_template_helpers.APlugin ):
+class odeint_main_template():
+    
+    def __init__( self ):
+        self.path = [ "libs" , "numeric" , "odeint" ]
+        self.name = "OdeintMain"
+        self.description = "Creates a source file (example) for odeint."
 
     def register_in_arg_parser( self , subparsers ):
-        parser = code_template_helpers.create_subparser( self , subparsers )
+        parser = helpers.create_subparser( self , subparsers )
         parser.add_argument( "filename" ,  nargs = "+" , help = filename_help )
-
 
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        path = code_template_helpers.find_odeint_lib_path()
+        path = helpers.find_path( self.path )
 
 
         if hasattr( args , "filename" ) :
             for filename in args.filename:
-                filename = code_template_helpers.check_filename_ending( filename , "cpp" )
+                filename = helpers.check_filename_ending( filename , "cpp" )
                 p = path
                 p.append( filename )
-                replacements[ "BOOSTFILENAME" ] = code_template_helpers.full_join( p )
-                code_template_helpers.default_processing( filename , replacements , template )
+                replacements[ "FILENAME" ] = helpers.full_join( p )
+                helpers.default_processing( filename , replacements , template )

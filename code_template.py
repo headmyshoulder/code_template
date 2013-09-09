@@ -6,16 +6,20 @@ import argcomplete
 import datetime
 import os
 import glob
+import collections
 
-from yapsy.PluginManager import PluginManager
+from basic_class_template import *
+from basic_source_template import *
+from basic_main_template import *
+from basic_gtest_template import *
+from odeint_class_template import *
+from odeint_main_template import *
+from odeint_test_template import *
+from supertoll_test_template import *
 
-from templates.amboss_header import *
-from templates.gpcxx_header import *
 
 
 description = "Create source code templates for commonly used files."
-
-directories = [ os.path.join( os.path.dirname( os.path.realpath(__file__) ) , "templates" ) ]
 
 config = {
     "Author" : "Karsten Ahnert" ,
@@ -29,47 +33,89 @@ default_replacements = {
 }
 
 
-
-
-parser = argparse.ArgumentParser( description = description )
-
-subparsers = parser.add_subparsers( help = "subcommand help" )
 templates = {}
 
+templates[ "AmbossHeader" ] = basic_class_template(
+    "AmbossHeader" , 
+    "Creates a simple header with header guards for Amboss." ,
+    "Amboss" , [ "Amboss" ] , [ "Amboss" ] ) 
+templates[ "GPCXXHeader" ] = basic_class_template(
+    "GPCXXHeader" ,
+    "Creates a header file with header guards and namespace defintions for gpcxx." ,
+    "gpcxx" , [ "gpcxx" ] , [ "gpcxx" ] )
+templates[ "SimpleHeader" ] = basic_class_template(
+    "SimpleHeader" ,
+    "Creates a simple header with header guards." ,
+    "simple" , [] , [] , copyright_notes.no_copyright_for_header )
+templates[ "SuperTollHeader" ] = basic_class_template(
+    "SuperTollHeader" ,
+    "Creates a simple header with header guards for SuperToll." ,
+    "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
+templates[ "AModHeader" ] = basic_class_template(
+    "AModHeader" ,
+    "Creates a simple header with header guards for AMod." ,
+    "AMod" , [ "AMod" ] , [ "AMod" ] , copyright_notes.no_copyright_for_header )
+templates[ "ZEHeader" ] = basic_class_template(
+    "ZEHeader" ,
+    "Creates a simple header with header guards for ZE." ,
+    "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
+templates[ "ZEHeader" ] = basic_class_template(
+    "ZEHeader" ,
+    "Creates a simple header with header guards for ZE." ,
+    "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
 
 
-def register_plugin( plugin_info ):
-    #print plugin_info.name
-    #print plugin_info.description
-    #print plugin_info.plugin_object
-    #print
 
-    plugin = plugin_info.plugin_object
-    plugin.set_name( plugin_info.name )
-    plugin.set_description( plugin_info.description )
-    plugin.register_in_arg_parser( subparsers )
-    templates[ plugin.name ] = plugin
 
-def plugin_sort( p1 , p2 ):
-    if( p1.name < p2.name ) : return -1
-    else :
-        if( p1.name == p2.name ) : return 0
-        else : return 1
+templates[ "SuperTollSource" ] = basic_source_template(
+    "SuperTollSource" ,
+    "Creates a source file for SuperToll." ,
+    [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
+templates[ "AModSource" ] = basic_source_template(
+    "AModSource" ,
+    "Creates a source file for AMod." ,
+    [ "AMod" ] , copyright_notes.no_copyright_for_header )
+templates[ "ZESource" ] = basic_source_template(
+    "ZESource" ,
+    "Creates a source file for ZE." ,
+    [ "ZE" ] , copyright_notes.no_copyright_for_header )
 
-templates[ "AmbossHeader" ] = amboss_header()
-templates[ "GPCXXHeader" ] = gpcxx_header()
+
+
+
+templates[ "AmbossMain" ] = basic_main_template(
+    "AmbossMain" ,
+    "Creates a simple main file for Amboss" )
+templates[ "SimpleMain" ] = basic_main_template(
+    "SimpleMain" ,
+    "Creates a simple cpp file with a main function." , [] , copyright_notes.no_copyright_for_header )
+
+
+
+
+templates[ "SuperTollGTest" ] = basic_gtest_template(
+    "SuperTollGTest" ,
+    "Creates a unit test file (example) for gpcxx." , [ "UnitTest" ] , copyright_notes.no_copyright_for_header )
+templates[ "GPCXXTest" ] = basic_gtest_template(
+    "GPCXXTest" ,
+    "Creates a unit test file (example) for gpcxx." , [ "test" ] )
+templates[ "AmbossTest" ] = basic_gtest_template(
+    "AmbossTest" ,
+    "Creates a unit test file (example) for Amboss." , [ "test" ] )
+
+
+templates[ "OdeintHeader" ] = odeint_class_template()
+templates[ "OdeintMain" ] = odeint_main_template()
+templates[ "OdeintTest" ] = odeint_test_template()
+
+templates[ "SuperTollTest" ] = supertoll_test_template()
 
 def main():
-    
-    # Load and register all plugins
-    #manager = PluginManager( directories_list = directories )
-    #manager.collectPlugins()
-    #plugins = manager.getAllPlugins()
-    #plugins.sort( plugin_sort )
-    #for plugin in plugins:
-        #register_plugin( plugin ) 
-    
-    for name, t in templates.items() :
+
+    parser = argparse.ArgumentParser( description = description )
+    subparsers = parser.add_subparsers( help = "subcommand help" )
+    ordered_templates = collections.OrderedDict( sorted( templates.items() ) )    
+    for name, t in ordered_templates.items() :
         t.register_in_arg_parser( subparsers )
 
     # parse arguments and evaluate the current template

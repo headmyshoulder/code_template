@@ -2,7 +2,7 @@
 
 import os
 from string import Template
-from yapsy.IPlugin import IPlugin
+
 
 default_class_template = """class $CLASSNAME
 {
@@ -34,19 +34,11 @@ def check_filename_ending( filename , default_ending ) :
         return filename
     return filename
 
-
-
-class APlugin( IPlugin ) :
-    def __init__( self ):
-        self.name = "APlugin"
-        self.description = "Description"
-        print "hehe1"
-
-    def set_name( self , name ):
-        self.name = name
-    
-    def set_description( self , description ):
-        self.description = description
+def template_sort( p1 , p2 ):
+    if( p1.name < p2.name ) : return -1
+    else :
+        if( p1.name == p2.name ) : return 0
+        else : return 1
 
 
     
@@ -137,6 +129,8 @@ def full_join( path ):
 
 
 def find_path( boost_path ):
+    if len( boost_path ) == 0 : return []
+    
     path = full_split( os.getcwd() )
     r = range( 0 , len( path ) )
     r.reverse()
