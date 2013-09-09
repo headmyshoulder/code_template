@@ -38,8 +38,10 @@ class cpp_project_template():
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        print "* Creating project folder"
-        os.mkdir( args.project )
+        if not os.path.exists( args.project ):
+            print "* Creating project folder"
+            os.mkdir( args.project )
+        print "* Project folder already exist"
         print "* Switching to project folder"
         os.chdir( args.project )
         print "* Creating build folder"
