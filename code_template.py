@@ -9,6 +9,9 @@ import glob
 
 from yapsy.PluginManager import PluginManager
 
+from templates.amboss_header import *
+from templates.gpcxx_header import *
+
 
 description = "Create source code templates for commonly used files."
 
@@ -53,16 +56,21 @@ def plugin_sort( p1 , p2 ):
         if( p1.name == p2.name ) : return 0
         else : return 1
 
+templates[ "AmbossHeader" ] = amboss_header()
+templates[ "GPCXXHeader" ] = gpcxx_header()
 
 def main():
     
     # Load and register all plugins
-    manager = PluginManager( directories_list = directories )
-    manager.collectPlugins()
-    plugins = manager.getAllPlugins()
-    plugins.sort( plugin_sort )
-    for plugin in plugins:
-        register_plugin( plugin ) 
+    #manager = PluginManager( directories_list = directories )
+    #manager.collectPlugins()
+    #plugins = manager.getAllPlugins()
+    #plugins.sort( plugin_sort )
+    #for plugin in plugins:
+        #register_plugin( plugin ) 
+    
+    for name, t in templates.items() :
+        t.register_in_arg_parser( subparsers )
 
     # parse arguments and evaluate the current template
     argcomplete.autocomplete( parser )
