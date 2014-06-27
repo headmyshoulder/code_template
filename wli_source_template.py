@@ -4,7 +4,7 @@ import helpers
 import copyright_notes
 
 filename_help = "Output file name(s)"
-template = """// Copyright 2014 Wonderlamp Industries GmbH, Potsdam.
+template = """// Copyright 2012-2014 Wonderlamp Industries GmbH, Potsdam.
 
 #include <iostream>
 

@@ -8,7 +8,7 @@ import copyright_notes
 filename_help = "Output file name(s)"
 namespace_help = "Namespace definitions to be created."
 class_help = "Class templates to be created" 
-template = """// Copyright 2014 Wonderlamp Industries GmbH, Potsdam.
+template = """// Copyright 2012-2014 Wonderlamp Industries GmbH, Potsdam.
 
 #ifndef ${FILENAMECAP}
 #define ${FILENAMECAP} 1
