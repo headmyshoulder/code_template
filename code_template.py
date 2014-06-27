@@ -21,6 +21,8 @@ from odeint_test_template import *
 from supertoll_test_template import *
 from simple_cpp_project_template import *
 from cpp_project_template import *
+from wli_header_template import *
+from wli_source_template import *
 
 description = "Create source code templates for commonly used files."
 
@@ -70,6 +72,10 @@ templates[ "NumdiffHeader" ] = basic_header_template(
     "NumdiffHeader" ,
     "Creates a header for numdiff" ,
     "Numdiff" , [ "numdiff" ] , [ "numdiff" ] )
+templates[ "WliHeader" ] = wli_header_template(
+    "WliHeader" ,
+    "Create a header for wli" )
+
 
 
 
@@ -88,7 +94,10 @@ templates[ "ZESource" ] = basic_source_template(
 templates[ "SimpleSource" ] = basic_source_template(
     "SimpleSource" ,
     "Creates a simple source file." ,
-    [] , copyright_notes.no_copyright_for_header )
+    [ "src" ] , copyright_notes.no_copyright_for_header )
+templates[ "WliSource" ] = wli_source_template(
+    "WliSource" ,
+    "Create a source file for wli." )
 
 
 
