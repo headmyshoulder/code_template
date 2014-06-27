@@ -61,6 +61,8 @@ class wli_header_template():
                 ff = f
                 if ff.count( "src" ) != 0:
                     ff = ff[ ff.index( "src" ) + 4 : ]
+                if ff.count( "hpp" ) != 0:
+                    ff = ff[ : ff.index( "hpp" ) - 1 ]
                 replacements[ "FILENAMECAP" ] = helpers.create_cap_filename_str( ff )
                 helpers.default_processing( filename , replacements , template )
 
