@@ -8,6 +8,11 @@ template = """// Copyright 2012-2014 Wonderlamp Industries GmbH, Potsdam.
 
 #include <iostream>
 
+
+namespace wli {
+
+
+} // namespace wli
 """
 
 
