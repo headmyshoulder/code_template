@@ -24,6 +24,7 @@ from cpp_project_template import *
 from wli_header_template import *
 from wli_source_template import *
 from python_application import *
+from python_lib import *
 
 description = "Create source code templates for commonly used files."
 
@@ -150,6 +151,9 @@ templates[ "CppProject" ] = cpp_project_template()
 templates[ "PythonApplication" ] = python_application_template(
     "PythonApplication" ,
     "Creates a python application" )
+templates[ "PythonLib" ] = python_lib_template(
+    "PythonLib" ,
+    "Creates a python library" )
 
 
 def main():
