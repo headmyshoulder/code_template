@@ -23,6 +23,7 @@ from simple_cpp_project_template import *
 from cpp_project_template import *
 from wli_header_template import *
 from wli_source_template import *
+from python_application import *
 
 description = "Create source code templates for commonly used files."
 
@@ -145,6 +146,10 @@ templates[ "SuperTollTest" ] = supertoll_test_template()
 
 templates[ "SimpleCppProject" ] = simple_cpp_project_template()
 templates[ "CppProject" ] = cpp_project_template()
+
+templates[ "PythonApplication" ] = python_application_template(
+    "PythonApplication" ,
+    "Creates a python application" )
 
 
 def main():
