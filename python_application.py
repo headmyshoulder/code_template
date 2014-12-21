@@ -51,12 +51,13 @@ argparsetemplatedb = """def parseCmd( argv ):
     return args"""
 
 initlogging = """def initLogging( args ):
-    formatString = '[%(levelname)s][%(name)s] : %(message)s'
+    formatString = '[%(levelname)s][%(asctime)s] : %(message)s'
+    # formatString = '[%(levelname)s][%(name)s] : %(message)s'
     logLevel = logging.INFO
-    logging.basicConfig( format=formatString , level=logLevel )
+    logging.basicConfig( format=formatString , level=logLevel , datefmt='%Y-%m-%d %I:%M:%S')
     ch = logging.FileHandler( args.logfile , "w" )
     ch.setLevel( logLevel )
-    ch.setFormatter( logging.Formatter( formatString ) )
+    ch.setFormatter( logging.Formatter( formatString , datefmt='%Y-%m-%d %I:%M:%S') )
     logging.getLogger().addHandler( ch )"""
 
 maintemplateargsdb = """    args = parseCmd( argv )
