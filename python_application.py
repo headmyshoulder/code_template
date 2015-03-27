@@ -108,17 +108,6 @@ class python_application_template():
             replacements[ "MAIN" ] = "    pass"
 
         
-        replacements[ "TARGETS" ] = ""
-        if ( hasattr( args , "target" ) ) and ( args.target is not None ) and ( len( args.target ) != 0 ) :
-            for target in args.target:
-                print "* Found target " + target
-                p = os.path.splitext( target )
-                if p[1] == ".cpp" :
-                    replacements[ "TARGETS" ] += "add_executable ( " + p[0] + " " + p[0] + ".cpp" + " ) \n"
-                else:
-                    replacements[ "TARGETS" ] += "add_executable ( " + target + " " + target + ".cpp" + " ) \n"
-
-            
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 p = path

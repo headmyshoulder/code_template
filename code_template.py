@@ -25,6 +25,7 @@ from wli_header_template import *
 from wli_source_template import *
 from python_application import *
 from python_lib import *
+from supertoll_python_application import *
 
 description = "Create source code templates for commonly used files."
 
@@ -100,6 +101,10 @@ templates[ "SimpleSource" ] = basic_source_template(
 templates[ "WliSource" ] = wli_source_template(
     "WliSource" ,
     "Create a source file for wli." )
+templates[ "GPCXXExample" ] = basic_source_template(
+    "GPCXXExample" ,
+    "Create a sample gpcxx application." )
+
 
 
 
@@ -154,6 +159,9 @@ templates[ "PythonApplication" ] = python_application_template(
 templates[ "PythonLib" ] = python_lib_template(
     "PythonLib" ,
     "Creates a python library" )
+templates [ "SuperTollPythonApplication" ] = supertoll_python_application_template(
+    "SuperTollPythonApplication" ,
+    "Create a supertoll python application" )
 
 
 def main():
