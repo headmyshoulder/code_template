@@ -67,17 +67,18 @@ templates[ "ZEHeader" ] = basic_header_template(
     "ZEHeader" ,
     "Creates a simple header with header guards for ZE." ,
     "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
-templates[ "ZEHeader" ] = basic_header_template(
-    "ZEHeader" ,
-    "Creates a simple header with header guards for ZE." ,
-    "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
-templates[ "NumdiffHeader" ] = basic_header_template(
-    "NumdiffHeader" ,
-    "Creates a header for numdiff" ,
-    "Numdiff" , [ "numdiff" ] , [ "numdiff" ] )
-templates[ "WliHeader" ] = wli_header_template(
-    "WliHeader" ,
-    "Create a header for wli" )
+templates[ "FormulaHeader" ] = basic_header_template(
+    "FormulaHeader" ,
+    "Creates a simple header with header guards for formula." ,
+    "formula" , [ "formula" ] , [ "formula" ] , copyright_notes.no_copyright_for_header )
+
+#templates[ "NumdiffHeader" ] = basic_header_template(
+    #"NumdiffHeader" ,
+    #"Creates a header for numdiff" ,
+    #"Numdiff" , [ "numdiff" ] , [ "numdiff" ] )
+#templates[ "WliHeader" ] = wli_header_template(
+    #"WliHeader" ,
+    #"Create a header for wli" )
 
 
 
@@ -98,12 +99,16 @@ templates[ "SimpleSource" ] = basic_source_template(
     "SimpleSource" ,
     "Creates a simple source file." ,
     [ "src" ] , copyright_notes.no_copyright_for_header )
-templates[ "WliSource" ] = wli_source_template(
-    "WliSource" ,
-    "Create a source file for wli." )
+#templates[ "WliSource" ] = wli_source_template(
+    #"WliSource" ,
+    #"Create a source file for wli." )
 templates[ "GPCXXExample" ] = basic_source_template(
     "GPCXXExample" ,
     "Create a sample gpcxx application." )
+templates[ "FormulaSource" ] = basic_source_template(
+    "FormulaSource" ,
+    "Creates a simple source file for formula." ,
+    [ "formula" ] , copyright_notes.no_copyright_for_header )
 
 
 
@@ -129,9 +134,12 @@ templates[ "GPCXXTest" ] = basic_gtest_template(
 templates[ "AmbossTest" ] = basic_gtest_template(
     "AmbossTest" ,
     "Creates a unit test file for Amboss." , [ "test" ] )
-templates[ "NumdiffTest" ] = basic_gtest_template(
-    "NumdiffTest" ,
-    "Create a unit test file for Numdiff." , [ "test" ] )
+#templates[ "NumdiffTest" ] = basic_gtest_template(
+    #"NumdiffTest" ,
+    #"Create a unit test file for Numdiff." , [ "test" ] )
+templates[ "FormulaTest" ] = basic_gtest_template(
+    "FormulaTest" ,
+    "Creates a unit test file for Amboss." , [ "test" ] )
 
 
 templates[ "SimpleCMake" ] = basic_cmake_template(
