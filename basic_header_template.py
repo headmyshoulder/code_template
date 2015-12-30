@@ -30,17 +30,36 @@ $NAMESPACE_CLOSING
 #endif // ${FILENAMECAP}_INCLUDED
 """
 
+template_pragma_once = """/*
+ * $FILENAME
+ * Date: $DATE
+ * Author: $AUTHOR ($AUTHOREMAIL)
+ * Copyright: $AUTHOR
+ *
+$LICENSE
+ */
+
+#pragma once
+
+$NAMESPACE_OPENING
+
+$CLASS_TEMPLATE
+
+$NAMESPACE_CLOSING
+"""
+
 
 
 class basic_header_template():
     
-    def __init__( self , name , description , libname , namespace , path , license = copyright_notes.boost_copyright_for_header ):
+    def __init__( self , name , description , libname , namespace , path , use_pragma_once = False , license = copyright_notes.boost_copyright_for_header ):
         self.name = name
         self.description = description
         self.libname = libname
         self.license = license
         self.namespace = namespace 
         self.path = path
+        self.use_pragma_once = use_pragma_once
         
     def register_in_arg_parser( self , subparsers ):
         parser = helpers.create_subparser( self , subparsers )
@@ -68,5 +87,8 @@ class basic_header_template():
                 helpers.add_filename_replacements( replacements , filename )
                 replacements[ "FILENAME" ] = f
                 replacements[ "FILENAMECAP" ] = helpers.create_cap_filename_str( f )
-                helpers.default_processing( filename , replacements , template )
+                if self.use_pragma_once:
+                    helpers.default_processing( filename , replacements , template_pragma_once )
+                else:
+                    helpers.default_processing( filename , replacements , template )
 

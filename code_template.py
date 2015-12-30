@@ -70,7 +70,7 @@ templates[ "ZEHeader" ] = basic_header_template(
 templates[ "FormulaHeader" ] = basic_header_template(
     "FormulaHeader" ,
     "Creates a simple header with header guards for formula." ,
-    "formula" , [ "formula" ] , [ "formula" ] , copyright_notes.no_copyright_for_header )
+    "formula" , [ "formula" ] , [ "formula" ] , use_pragma_once = True , license = copyright_notes.no_copyright_for_header )
 
 #templates[ "NumdiffHeader" ] = basic_header_template(
     #"NumdiffHeader" ,
