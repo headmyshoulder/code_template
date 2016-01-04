@@ -139,7 +139,7 @@ templates[ "AmbossTest" ] = basic_gtest_template(
     #"Create a unit test file for Numdiff." , [ "test" ] )
 templates[ "FormulaTest" ] = basic_gtest_template(
     "FormulaTest" ,
-    "Creates a unit test file for Amboss." , [ "test" ] )
+    "Creates a unit test file for Amboss." , [ "test" ] , copyright_notes.no_copyright_for_header )
 
 
 templates[ "SimpleCMake" ] = basic_cmake_template(
