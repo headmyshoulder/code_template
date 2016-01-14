@@ -58,7 +58,7 @@ templates[ "SimpleHeader" ] = basic_header_template(
 templates[ "SuperTollHeader" ] = basic_header_template(
     "SuperTollHeader" ,
     "Creates a simple header with header guards for SuperToll." ,
-    "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
+    "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "AModHeader" ] = basic_header_template(
     "AModHeader" ,
     "Creates a simple header with header guards for AMod." ,
