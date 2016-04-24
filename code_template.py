@@ -54,19 +54,19 @@ templates[ "GPCXXHeader" ] = basic_header_template(
 templates[ "SimpleHeader" ] = basic_header_template(
     "SimpleHeader" ,
     "Creates a simple header with header guards." ,
-    "simple" , [] , [] , copyright_notes.no_copyright_for_header )
+    "simple" , [] , [] , license = copyright_notes.no_copyright_for_header )
 templates[ "SuperTollHeader" ] = basic_header_template(
     "SuperTollHeader" ,
     "Creates a simple header with header guards for SuperToll." ,
-    "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
+    "SuperToll" , [ "SuperToll" ] , [ "SuperToll" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "AModHeader" ] = basic_header_template(
     "AModHeader" ,
     "Creates a simple header with header guards for AMod." ,
-    "AMod" , [ "AMod" ] , [ "AMod" ] , copyright_notes.no_copyright_for_header )
+    "AMod" , [ "AMod" ] , [ "AMod" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "ZEHeader" ] = basic_header_template(
     "ZEHeader" ,
     "Creates a simple header with header guards for ZE." ,
-    "ZE" , [ "ZE" ] , [ "ZE" ] , copyright_notes.no_copyright_for_header )
+    "ZE" , [ "ZE" ] , [ "ZE" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "FormulaHeader" ] = basic_header_template(
     "FormulaHeader" ,
     "Creates a simple header with header guards for formula." ,
@@ -86,19 +86,19 @@ templates[ "FormulaHeader" ] = basic_header_template(
 templates[ "SuperTollSource" ] = basic_source_template(
     "SuperTollSource" ,
     "Creates a source file for SuperToll." ,
-    [ "SuperToll" ] , copyright_notes.no_copyright_for_header )
+    [ "SuperToll" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "AModSource" ] = basic_source_template(
     "AModSource" ,
     "Creates a source file for AMod." ,
-    [ "AMod" ] , copyright_notes.no_copyright_for_header )
+    [ "AMod" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "ZESource" ] = basic_source_template(
     "ZESource" ,
     "Creates a source file for ZE." ,
-    [ "ZE" ] , copyright_notes.no_copyright_for_header )
+    [ "ZE" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "SimpleSource" ] = basic_source_template(
     "SimpleSource" ,
     "Creates a simple source file." ,
-    [ "src" ] , copyright_notes.no_copyright_for_header )
+    [ "src" ] , license = copyright_notes.no_copyright_for_header )
 #templates[ "WliSource" ] = wli_source_template(
     #"WliSource" ,
     #"Create a source file for wli." )
@@ -108,7 +108,7 @@ templates[ "GPCXXExample" ] = basic_source_template(
 templates[ "FormulaSource" ] = basic_source_template(
     "FormulaSource" ,
     "Creates a simple source file for formula." ,
-    [ "formula" ] , copyright_notes.no_copyright_for_header )
+    [ "formula" ] , license = copyright_notes.no_copyright_for_header )
 
 
 
@@ -127,7 +127,7 @@ templates[ "SimpleMain" ] = basic_main_template(
 
 templates[ "SuperTollGTest" ] = basic_gtest_template(
     "SuperTollGTest" ,
-    "Creates a unit test file for gpcxx." , [ "UnitTest" ] , copyright_notes.no_copyright_for_header )
+    "Creates a unit test file for gpcxx." , [ "UnitTest" ] , license = copyright_notes.no_copyright_for_header )
 templates[ "GPCXXTest" ] = basic_gtest_template(
     "GPCXXTest" ,
     "Creates a unit test file for gpcxx." , [ "test" ] )

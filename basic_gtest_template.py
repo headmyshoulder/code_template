@@ -16,14 +16,13 @@ template = """/*
 $LICENSE
  */
 
-#include <sstream>
 #include <gtest/gtest.h>
 
 #define TESTNAME $TESTNAME
 
 using namespace std;
 
-TEST( TESTNAME , TestCase )
+TEST( TESTNAME , test_case )
 {
     EXPECT_EQ( true , true );
 }
